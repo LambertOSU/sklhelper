@@ -78,7 +78,7 @@ class sklhelpClassify:
 
 
         # model instances
-        self.models = models = {
+        self.models = {
         'Random Forest' : RandomForestClassifier(**self.rf_params),
         'Extra Trees' : ExtraTreesClassifier(**self.et_params),
         'Gaussian Naive Bayes' : GaussianNB(),
