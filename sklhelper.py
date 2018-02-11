@@ -1,15 +1,21 @@
-# This class provides a simple and conveinent interface for performing a ranked
-# assessment of several sci-kit learn classifiers based on a k-fold validation test.
+# This module provides a simple and convenient interface for performing a ranked
+# assessment of several sci-kit learn predictors based on a k-fold validation test.
 
+#--------------------------------------------
+# data handling
 import pandas as pd
 
+# iterating
 import itertools
 
+# splitting data
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 
+# evaluating accuracy
 from sklearn.metrics import accuracy_score
-
+#--------------------------------------------
+# classifiers
 from sklearn.naive_bayes import GaussianNB
 
 from sklearn.neural_network import MLPClassifier
@@ -33,6 +39,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 
 import xgboost
+#--------------------------------------------
 
 class sklhelpClassify:
 
