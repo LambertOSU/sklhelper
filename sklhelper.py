@@ -14,6 +14,7 @@ from sklearn.model_selection import KFold
 
 # evaluating accuracy
 from sklearn.metrics import accuracy_score
+
 #--------------------------------------------
 # classifiers
 from sklearn.naive_bayes import GaussianNB
@@ -59,10 +60,6 @@ class sklhelpClassify:
                 'algorithm' : 'ball_tree',
                 'leaf_size' : 30}
 
-        self.mlpc_params = {'activation':'identity',
-               'solver':'adam',
-               'shuffle':True}
-
         self.svc_params  =  {'C' : 1,
                 'kernel' : 'rbf',
                 'gamma' : 'auto'}
@@ -92,7 +89,6 @@ class sklhelpClassify:
         'Adaptive Boost Classifier' : AdaBoostClassifier(),
         'Gradient Boosting Classifier' : GradientBoostingClassifier(),
         'eXtreme Gradient Boosting' : xgboost.XGBClassifier(),
-        'Multilayer Perceptron' : MLPClassifier(**self.mlpc_params),
         }
 
         # model keys
@@ -155,3 +151,36 @@ class sklhelpClassify:
     # full report
     def report(self):
         print(self.kf_data)
+
+
+#--------------------------------------------
+# Testing functions
+
+def classify_iris():
+    # get packages
+    from sklearn import datasets
+    import pandas as pd
+    print('-----------------------------------------------------------\n')
+    #
+    print('-----------------------------------------------------------')
+    print('\nTesting sklhelpClassify() using the Iris dataset...\n')
+    skl = sklhelpClassify()
+    iris = datasets.load_iris()
+    df = pd.DataFrame(iris.data[:,:3])
+    df['target'] = iris.target
+    skl.get_data(df)
+    skl.set_target('target')
+    skl.kfold()
+    print('\n-----------------------------------------------------------')
+    print(skl.ranked_summary())
+    print('-----------------------------------------------------------\n')
+    print('Testing complete!\n')
+
+
+
+
+
+#--------------------------------------------
+if __name__=='__main__':
+    # test sklhelpClassify()
+    classify_iris()
